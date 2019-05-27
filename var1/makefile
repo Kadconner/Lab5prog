@@ -1,2 +1,2 @@
-kod: kod.c
-	gcc -Wall -o kod kod.c
+main: main.c string.c
+	gcc -Wall -o main main.c string.c 
