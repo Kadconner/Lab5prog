@@ -8,13 +8,14 @@
 void op(char* paths) { printf("new paths: %s\n", paths); }
 
 
-char input(char *paths) {
-char delim;
-	printf("delim: ");
-	scanf("%c",&delim);
-	printf("paths: ");
-	scanf("%s",paths);
-	return delim;
+void input(char* delim,char* paths[]) {  //, char *paths) {
+	char temp[2];
+	fputs("delim: ", stdout);
+	fgets(temp, 2, stdin);
+	*delim = temp[0];
+    	fputs("paths: ", stdout);
+    	fgets(temp, 2, stdin);
+    	fgets(paths, MAX_PATH * 4 + 4, stdin);
 }
 
 void procces(char delim, char* paths) {
@@ -143,11 +144,12 @@ int is_valid_ip(char* ip_str) {
 }
 
 int main(int argc, char* argv[]) {
-  //char *paths = malloc(sizeof(char) * MAX_PATH*4);
-	char delim;
-	char paths[1000];// = {"192.168.1.1:/test+mysrv.com:/Windows/+192.500.1.1:/test+my.fr:/m/n/k.txt"};
-        delim=input(paths); 
+	char *paths = malloc(sizeof(char) * MAX_PATH*4);
+	char delim = '+';
+	/*char paths[] = {
+	    "smb://192.168.1.1/test+http://mysrv.com/Windows/+http://"
+	    "192.500.1.1/test+ftp.."};*/
+	input(&delim,paths);//, paths);
 	procces(delim, paths);
-
 	return 0;
 }
