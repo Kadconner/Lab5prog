@@ -3,7 +3,7 @@
 #define MAX_PATH 260
 #define DELIM "."
 
-void input(char* delim);
+void input(char* delim,char* paths[]);
 char* sstr(char* string1, char* string2);
 char* mystrchr(char* s, char c);
 void procces(char delim, char* paths);
@@ -118,14 +118,14 @@ char* stok(char* str, char* delim) {
 	return str;
 }
 
-void input(char* delim) {  //, char *paths) {
+void input(char* delim,char* paths[]) {  //, char *paths) {
 	char temp[2];
 	fputs("delim: ", stdout);
 	fgets(temp, 2, stdin);
 	*delim = temp[0];
-	// fputs("paths: ", stdout);
-	// fgets(temp, 2, stdin);
-	// fgets(paths, MAX_PATH * 4 + 4, stdin);
+    fputs("paths: ", stdout);
+    fgets(temp, 2, stdin);
+    fgets(paths, MAX_PATH * 4 + 4, stdin);
 }
 
 void procces(char delim, char* paths) {
@@ -276,12 +276,12 @@ int is_valid_ip(char* ip_str) {
 }
 
 int main(int argc, char* argv[]) {
-	// char *paths = malloc(sizeof(char) * MAX_PATH*4);
+	char *paths = malloc(sizeof(char) * MAX_PATH*4);
 	char delim = '+';
-	char paths[] = {
+	/*char paths[] = {
 	    "smb://192.168.1.1/test+http://mysrv.com/Windows/+http://"
-	    "192.500.1.1/test+ftp.."};
-	// input(&delim);//, paths);
+	    "192.500.1.1/test+ftp.."};*/
+	input(&delim,paths);//, paths);
 	procces(delim, paths);
 
 	return 0;
